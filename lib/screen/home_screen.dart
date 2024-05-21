@@ -19,7 +19,7 @@ class HomeScreen extends StatelessWidget {
               width: 36.0,
               height: 36.0,
             ),
-            const Text('kelvin handoko'),
+            Text(authProvider.isLoggedIn ? 'kelvin handoko' : "goodbye"),
             Row(
               children: [
                 const ThemeSwitcher(),

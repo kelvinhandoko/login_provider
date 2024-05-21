@@ -5,12 +5,17 @@ class AuthProvider extends ChangeNotifier {
 
   bool get isLoading => _isLoading;
 
+  bool _isLoggedIn = false;
+
+  bool get isLoggedIn => _isLoggedIn;
+
   Future<void> login() async {
     try {
       _isLoading = true;
       notifyListeners();
       await Future.delayed(const Duration(seconds: 3), () {
-        print('Login Success');
+        _isLoggedIn = true;
+        notifyListeners();
       });
     } catch (e) {
       print(e);
@@ -23,10 +28,9 @@ class AuthProvider extends ChangeNotifier {
   Future<void> logout() async {
     try {
       _isLoading = true;
+      _isLoggedIn = false;
       notifyListeners();
-      await Future.delayed(const Duration(seconds: 1), () {
-        print('Logout Success');
-      });
+      await Future.delayed(const Duration(seconds: 1), () {});
     } catch (e) {
       print(e);
     } finally {
